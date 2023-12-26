@@ -37,8 +37,8 @@ export async function WriteTodo(title) {
         username: "KDT7_HaSungPil",
       },
       body: JSON.stringify({
-        // title: titleValue,
         title: store.state.title,
+        // order: store.state.order,
       }),
     });
   } catch {
@@ -47,7 +47,7 @@ export async function WriteTodo(title) {
     //   store.state.loading = false;
   }
 }
-export async function DelTodo() {
+export async function DelTodo(todoId) {
   try {
     const res = await fetch("https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos", {
       method: "DELETE",
@@ -57,7 +57,7 @@ export async function DelTodo() {
         username: "KDT7_HaSungPil",
       },
       body: JSON.stringify({
-        // id: '',
+        id: todoId,
       }),
     });
   } catch {

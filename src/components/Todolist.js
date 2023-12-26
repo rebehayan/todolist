@@ -1,4 +1,5 @@
 import { Component } from "../core/core";
+import { DelTodo } from "../store/todo";
 
 export default class Todolist extends Component {
   constructor(props) {
@@ -23,13 +24,16 @@ export default class Todolist extends Component {
     this.el.classList.add(colors[random()]);
     this.el.innerHTML = /* html */ `
       <div class="align both vm ico">
-        <button class="btn-more" aria-label="옵션"></button>
-        <dialog class="notes-list__option">
-          <div>
-            <button class="btn-edit">Edit</button>
-            <button class="btn-delete">Delete</button>
-          </div>
-        </dialog>
+        <div>
+          <input type="checkbox" id="chk1_${todo.order}" /><label for="chk1_${todo.order}" aria-label="완료"></label>
+          <button class="btn-more" aria-label="옵션"></button>
+          <dialog class="notes-list__option">
+            <div>
+              <button class="btn-edit">Edit</button>
+              <button class="btn-delete">Delete</button>
+            </div>
+          </dialog>
+        </div>
       </div>
       <div class="notes-list__title">${title}</div>
       <div class="notes-list__content">
@@ -44,7 +48,7 @@ export default class Todolist extends Component {
     const moreEl = this.el.querySelectorAll(".btn-more");
     const dialogEl = this.el.querySelector("dialog");
     const editEl = this.el.querySelector(".btn-edit");
-    const deleteEl = this.el.querySelector(".btn-delete");
+    const deleteEl = this.el.querySelectorAll(".btn-delete");
 
     moreEl.forEach((el) => {
       el.addEventListener("click", (e) => {
@@ -53,12 +57,13 @@ export default class Todolist extends Component {
       });
     });
 
-    // deleteEl.forEach((el) => {
-    //   el.addEventListener("click", (e) => {});
-    // });
-
-    // window.addEventListener("click", () => {
-    //   dialogEl.close();
-    // });
+    deleteEl.forEach((el) => {
+      el.addEventListener("click", () => {
+        const parentEl = el.parentElement.parentElement;
+        parentEl.classList.remove("toggle");
+        console.log(todo.id);
+        DelTodo(todo.id);
+      });
+    });
   }
 }

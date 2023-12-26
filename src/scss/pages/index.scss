@@ -104,7 +104,7 @@ $colorSet: (
       }
     }
     &__option {
-      @include position(a, right, -4rem, top, 11rem);
+      @include position(a, right, -4rem, top, 9rem);
       @extend %shadow;
       padding: 1rem 0;
       &.toggle {
