@@ -1,0 +1,23 @@
+@mixin checkradio($class) {
+  .#{$class} {
+    @extend %label;
+    + label {
+      &::before {
+        @include background(map-get($checkboxRadio, $class, offImg));
+        content: "";
+        width: map-get($checkboxRadio, $class, width);
+        height: map-get($checkboxRadio, $class, height);
+      }
+    }
+    &:checked {
+      + label {
+        &::before {
+          @include background(map-get($checkboxRadio, $class, onImg));
+        }
+      }
+    }
+  }
+  .radio-type1 {
+    @extend %label;
+  }
+}

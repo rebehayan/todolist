@@ -1,0 +1,12 @@
+body {
+  padding: 3rem 3rem 3rem 28rem;
+  background-color: $bodybg;
+}
+
+%shadow {
+  background-color: $white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-sizing: border-box;
+  box-shadow: 0 0 4rem rgba(0, 0, 0, 0.05);
+}

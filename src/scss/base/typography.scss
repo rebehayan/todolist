@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+$roboto: "Roboto", sans-serif;
+$jost: "Jost", sans-serif;
+$icon: "bootstrap-icons";
+
+html {
+  font-size: 62.5%;
+  font-family: $roboto;
+  color: $primary;
+}
+body {
+  font-size: 1rem;
+}
+
+.heading {
+  &.regular {
+    font-size: 3rem;
+    color: $primary;
+    font-family: $jost;
+    font-weight: 300;
+  }
+}

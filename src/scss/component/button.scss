@@ -1,0 +1,7 @@
+.btn-more {
+  &::before {
+    content: "\F5D4";
+    font-family: $icon;
+    font-size: 1.8rem;
+  }
+}

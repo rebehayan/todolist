@@ -1,0 +1,183 @@
+@use "sass:list";
+$colorSet: (
+  1: (
+    "class": "blue",
+    "color": $info,
+  ),
+  2: (
+    "class": "pink",
+    "color": $red,
+  ),
+  3: (
+    "class": "green",
+    "color": $success,
+  ),
+  4: (
+    "class": "black",
+    "color": $gray-dark,
+  ),
+  5: (
+    "class": "purple",
+    "color": $purple,
+  ),
+  6: (
+    "class": "orange",
+    "color": $orange,
+  ),
+);
+
+@mixin listColor($class, $color) {
+  .notes-list {
+    > li.#{$class} {
+      &::after {
+        border-color: $color;
+      }
+      &:hover {
+        background-color: $color;
+        .ico {
+          &::before {
+            color: $white;
+          }
+        }
+      }
+      .ico {
+        &::before {
+          color: $color;
+        }
+      }
+    }
+    &__state {
+      .#{$class} & {
+        &::before {
+          color: $color;
+        }
+      }
+    }
+    &__date {
+      .#{$class} & {
+        &::before {
+          color: $color;
+        }
+      }
+    }
+  }
+}
+
+.notes {
+  @extend %shadow;
+  margin: 0 0 3rem;
+  .heading {
+    margin-bottom: 3rem;
+  }
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    > li {
+      @extend %shadow;
+      position: relative;
+      transition: 0.4s;
+
+      &::after {
+        content: "";
+        @include position(a, left, 0, bottom, 0);
+        width: 100%;
+        border-bottom: 0.4rem solid;
+        transition: 0.4s;
+      }
+      &:hover {
+        &::after {
+          transform: translateY(-1rem);
+          opacity: 0;
+        }
+        .btn-more::before,
+        .ico::before {
+          color: $white;
+        }
+      }
+
+      dialog {
+        @include position(a, right, 0, top, 0);
+        @extend %shadow;
+        left: inherit;
+        > div {
+          display: grid;
+          gap: 1rem;
+        }
+        button {
+          display: block;
+          background-color: rgba($gray, 0.2);
+          padding: 1rem 1.5rem;
+        }
+      }
+    }
+    .ico {
+      &::before {
+        content: "\F1E8";
+        font-family: $icon;
+        font-size: 3rem;
+      }
+    }
+    &__title {
+      font-size: 2.5rem;
+      padding: 1rem 0 0;
+      li:hover & {
+        color: $white;
+      }
+    }
+    &__content {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: $secondary;
+      padding: 1rem 0;
+      li:hover & {
+        color: $white;
+      }
+    }
+    &__state {
+      display: flex;
+      &::before {
+        content: "\F846";
+        font-family: $icon;
+        font-size: 2rem;
+        transform: rotate(90deg);
+        li:hover & {
+          color: $white;
+          animation: roket infinite 1.2s;
+        }
+      }
+    }
+    &__date {
+      display: flex;
+      align-items: center;
+      justify-content: right;
+      gap: 0.4rem;
+      font-size: 1.4rem;
+      li:hover & {
+        color: $white;
+      }
+      &::before {
+        content: "\F1F6";
+        font-family: $icon;
+        li:hover & {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+$count: list.length($colorSet);
+@for $i from 1 through $count {
+  @include listColor(map-get($colorSet, $i, "class"), map-get($colorSet, $i, "color"));
+}
+
+@keyframes roket {
+  0% {
+    transform: rotate(90deg) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(90deg) translateY(-10rem);
+    opacity: 0;
+  }
+}

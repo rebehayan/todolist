@@ -1,0 +1,18 @@
+.tab-type1 {
+  display: flex;
+  gap: 1rem;
+  padding: 0 0 4rem;
+  button {
+    padding: 1rem 1.5rem;
+    font-weight: 400;
+    font-family: $roboto;
+    font-size: 1.8rem;
+    color: $gray;
+    &.--active {
+      color: $dark;
+      span {
+        @include underline(-1rem, 0.1rem, $dark);
+      }
+    }
+  }
+}

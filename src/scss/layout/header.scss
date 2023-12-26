@@ -1,0 +1,66 @@
+@use "sass:list";
+
+$icons: (
+  0: "\f425",
+  1: "\F7AC",
+  2: "\f67a",
+  3: "\F1E6",
+  4: "\f3d7",
+  5: "\F293",
+  6: "\f5de",
+  7: "\F4A3",
+);
+
+$iconCount: list.length($icons);
+
+.header {
+  @include position(f, left, 0, top, 0);
+  height: calc(100vh - 6rem);
+  margin: 3rem;
+  width: 22rem;
+  @extend %shadow;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2.5rem;
+  font-weight: 300;
+  padding: 0 0 2rem;
+  border-bottom: 1px solid $border;
+  font-family: $jost;
+  &::before {
+    content: "";
+    width: 3rem;
+    height: 3rem;
+    background: url("/favicon.png") no-repeat 0 0 / cover;
+  }
+}
+.gnb {
+  padding: 2rem 0;
+
+  a {
+    display: flex;
+    gap: 0.5rem;
+    height: 4rem;
+    align-items: center;
+    border-radius: 1rem;
+    color: $light;
+    font-size: 1.6rem;
+    font-weight: 500;
+    white-space: nowrap;
+    &::before {
+      font-family: $icon;
+    }
+    &:hover {
+      color: $primary;
+    }
+  }
+  @for $i from 0 to $iconCount {
+    [data-icon="ico#{$i}"] {
+      &::before {
+        content: map-get($icons, $i);
+      }
+    }
+  }
+}
