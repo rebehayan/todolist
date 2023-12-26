@@ -1,0 +1,22 @@
+dialog {
+  @extend %shadow;
+  @include position(f, left, 50%, top, 50%);
+  &.alert {
+    min-width: 30rem;
+    padding: 1rem;
+    border: 1px solid $primary;
+  }
+}
+.alert {
+  &__title {
+    text-align: center;
+    font-size: 2rem;
+  }
+  &__content {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+  &__btns {
+    text-align: center;
+  }
+}

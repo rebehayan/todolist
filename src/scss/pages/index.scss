@@ -95,21 +95,6 @@ $colorSet: (
           color: $white;
         }
       }
-
-      dialog {
-        @include position(a, right, 0, top, 0);
-        @extend %shadow;
-        left: inherit;
-        > div {
-          display: grid;
-          gap: 1rem;
-        }
-        button {
-          display: block;
-          background-color: rgba($gray, 0.2);
-          padding: 1rem 1.5rem;
-        }
-      }
     }
     .ico {
       &::before {
@@ -118,16 +103,40 @@ $colorSet: (
         font-size: 3rem;
       }
     }
+    &__option {
+      @include position(a, right, -4rem, top, 11rem);
+      @extend %shadow;
+      padding: 1rem 0;
+      &.toggle {
+        display: block;
+      }
+      left: inherit;
+      > div {
+        display: grid;
+      }
+      button {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.5rem 2rem;
+        text-align: left;
+        &:hover {
+          background-color: rgba($secondary, 0.1);
+        }
+      }
+    }
     &__title {
       font-size: 2.5rem;
       padding: 1rem 0 0;
+      font-weight: 800;
       li:hover & {
         color: $white;
       }
     }
     &__content {
-      font-size: 1.8rem;
-      font-weight: 300;
+      font-size: 1.4rem;
+      font-weight: 400;
       color: $secondary;
       padding: 1rem 0;
       li:hover & {

@@ -1,4 +1,5 @@
 body {
+  @include scroll("r", 1rem, rgba($primary, 0.1), 1rem);
   padding: 3rem 3rem 3rem 28rem;
   background-color: $bodybg;
 }

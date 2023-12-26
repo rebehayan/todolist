@@ -5,3 +5,17 @@
     font-size: 1.8rem;
   }
 }
+.btn-edit {
+  &::before {
+    content: "\F4CA";
+    font-family: $icon;
+    font-size: 1.8rem;
+  }
+}
+.btn-delete {
+  &::before {
+    content: "\F78B";
+    font-family: $icon;
+    font-size: 1.8rem;
+  }
+}

@@ -1,9 +1,13 @@
 import { Component } from "../core/core";
+import Done from "../store/todo";
 
 export default class Tab extends Component {
   constructor() {
     super({
       tagName: "nav",
+    });
+    Done.subscribe("todoItems", () => {
+      this.render();
     });
   }
   render() {
@@ -15,6 +19,9 @@ export default class Tab extends Component {
       </ul>
     `;
 
+    const doneState = Done.state.todoItems;
+    console.log(doneState);
+
     const tabBtnEl = this.el.querySelectorAll("button");
     const removeClass = () => {
       tabBtnEl.forEach((el) => {
@@ -25,7 +32,6 @@ export default class Tab extends Component {
     tabBtnEl.forEach((el) => {
       el.addEventListener("click", (event) => {
         const txt = el.textContent.toLowerCase();
-        console.log(txt);
         removeClass();
         el.classList.add("--active");
       });

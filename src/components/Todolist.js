@@ -9,8 +9,10 @@ export default class Todolist extends Component {
   }
   render() {
     const { todo } = this.props;
-    const updateSplit = todo.updatedAt.split("T").at(0); // T를 기준으로 배열로 반환 0번째것만 반환
+    const updateSplit = todo.updatedAt.split("T")[0]; // T를 기준으로 배열로 반환 0번째것만 반환
     const stateTodo = todo.done ? "done" : "doing";
+    const title = todo.title.split("/")[0];
+    const content = todo.title.split("/")[1];
 
     const colors = ["pink", "blue", "green", "black", "purple", "orange"];
 
@@ -22,19 +24,18 @@ export default class Todolist extends Component {
     this.el.innerHTML = /* html */ `
       <div class="align both vm ico">
         <button class="btn-more" aria-label="옵션"></button>
-        <dialog>
+        <dialog class="notes-list__option">
           <div>
             <button class="btn-edit">Edit</button>
             <button class="btn-delete">Delete</button>
           </div>
         </dialog>
       </div>
-      <div class="notes-list__title">${todo.title}</div>
+      <div class="notes-list__title">${title}</div>
       <div class="notes-list__content">
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore est eius quasi eligendi necessitatibus qui corporis minima et quo adipisci placeat, aliquam minus enim doloribus doloremque quidem commodi voluptates? Officia?
+        ${content}
       </div>
       <div class="align both">
-
         <div class="notes-list__state ${stateTodo}"></div>
         <div class="notes-list__date txt-right">${updateSplit}</div>
       </div>
@@ -48,9 +49,14 @@ export default class Todolist extends Component {
     moreEl.forEach((el) => {
       el.addEventListener("click", (e) => {
         const nextEl = el.nextElementSibling;
-        nextEl.show();
+        nextEl.classList.toggle("toggle");
       });
     });
+
+    // deleteEl.forEach((el) => {
+    //   el.addEventListener("click", (e) => {});
+    // });
+
     // window.addEventListener("click", () => {
     //   dialogEl.close();
     // });
