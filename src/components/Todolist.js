@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import { DelTodo } from "../store/todo";
+import { delTodo } from "../store/todo";
 
 export default class Todolist extends Component {
   constructor(props) {
@@ -8,6 +8,7 @@ export default class Todolist extends Component {
       tagName: "li",
     });
   }
+
   render() {
     const { todo } = this.props;
     const updateSplit = todo.updatedAt.split("T")[0]; // T를 기준으로 배열로 반환 0번째것만 반환
@@ -62,7 +63,7 @@ export default class Todolist extends Component {
         const parentEl = el.parentElement.parentElement;
         parentEl.classList.remove("toggle");
         console.log(todo.id);
-        DelTodo(todo.id);
+        delTodo(todo.id);
       });
     });
   }

@@ -1,4 +1,3 @@
-import { Component } from "./src/core/core";
 import Header from "./src/routes/Header";
 import Footer from "./src/routes/Footer";
 import router from "./src/routes/index";

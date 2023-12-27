@@ -1,13 +1,10 @@
 import { Component } from "../core/core";
-import Done from "../store/todo";
+import { changeActiveTab } from "../store/todo";
 
 export default class Tab extends Component {
   constructor() {
     super({
       tagName: "nav",
-    });
-    Done.subscribe("todoItems", () => {
-      this.render();
     });
   }
   render() {
@@ -19,22 +16,24 @@ export default class Tab extends Component {
       </ul>
     `;
 
-    const doneState = Done.state.todoItems;
-    console.log(doneState);
+    this.tabBtnEl = this.el.querySelectorAll("button");
+    this.tabControl();
+  }
 
-    const tabBtnEl = this.el.querySelectorAll("button");
-    const removeClass = () => {
-      tabBtnEl.forEach((el) => {
-        el.classList.remove("--active");
-      });
-    };
-
-    tabBtnEl.forEach((el) => {
-      el.addEventListener("click", (event) => {
+  tabControl() {
+    this.tabBtnEl.forEach((el) => {
+      el.addEventListener("click", () => {
+        this.removeClass();
         const txt = el.textContent.toLowerCase();
-        removeClass();
+        changeActiveTab(txt);
         el.classList.add("--active");
       });
+    });
+  }
+
+  removeClass() {
+    this.tabBtnEl.forEach((el) => {
+      el.classList.remove("--active");
     });
   }
 }

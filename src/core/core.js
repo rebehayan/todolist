@@ -52,14 +52,16 @@ export class Store {
         },
         set: (val) => {
           state[key] = val;
-          this.observers[key].forEach((observer) => observer(val));
+          const value = this.observers[key];
+          if (value) {
+            console.log(key);
+            value.forEach((observer) => observer(val));
+          }
         },
       });
     }
   }
   subscribe(key, cb) {
-    Array.isArray(this.observers[key])
-      ? this.observers[key].push(cb)
-      : (this.observers[key] = [cb]);
+    Array.isArray(this.observers[key]) ? this.observers[key].push(cb) : (this.observers[key] = [cb]);
   }
 }

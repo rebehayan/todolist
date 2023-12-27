@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import todoStore from "../store/todo";
+import todoStore, { loadTodo } from "../store/todo";
 import Todolist from "../components/Todolist";
 import Write from "./Write";
 import Tab from "../components/Tab";
@@ -10,7 +10,18 @@ export default class Home extends Component {
     todoStore.subscribe("todoItems", () => {
       this.render();
     });
+    todoStore.subscribe("activeTab", () => {
+      this.render();
+    });
+
+    this.connectedCallback();
   }
+
+  connectedCallback() {
+    loadTodo();
+    console.log(todoStore);
+  }
+
   render() {
     this.el.innerHTML = /* html */ `
     <section class="notes">
@@ -27,7 +38,6 @@ export default class Home extends Component {
     this.el.prepend(write);
     noteListEl.before(tab);
 
-    console.log(todoStore.state.todoItems);
     noteListEl.append(
       ...todoStore.state.todoItems.map((todo) => {
         return new Todolist({ todo }).el;

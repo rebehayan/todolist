@@ -3,11 +3,14 @@ import { Store } from "../core/core";
 const store = new Store({
   title: "",
   todoItems: [],
+  filteredItems: [],
   loading: false,
   message: "",
+  activeTab: "all",
 });
 export default store;
-export async function LoadTodo() {
+
+export async function loadTodo() {
   try {
     const res = await fetch("https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos", {
       method: "GET",
@@ -20,14 +23,15 @@ export async function LoadTodo() {
     const json = await res.json();
 
     store.state.todoItems = json;
+    store.state.filteredItems = json;
   } catch {
     console.log("error");
-    // } finally {
-    //   store.state.loading = false;
+  } finally {
+    store.state.loading = false;
   }
 }
-LoadTodo();
-export async function WriteTodo(title) {
+
+export async function writeTodo(title) {
   try {
     const res = await fetch("https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos", {
       method: "POST",
@@ -47,7 +51,8 @@ export async function WriteTodo(title) {
     //   store.state.loading = false;
   }
 }
-export async function DelTodo(todoId) {
+
+export async function delTodo(todoId) {
   try {
     const res = await fetch("https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos", {
       method: "DELETE",
@@ -65,4 +70,8 @@ export async function DelTodo(todoId) {
     // } finally {
     //   store.state.loading = false;
   }
+}
+
+export function changeActiveTab(newTab) {
+  store.state.activeTab = newTab;
 }

@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import insertTodo, { WriteTodo } from "../store/todo";
+import insertTodo, { writeTodo } from "../store/todo";
 import Dialog from "../routes/Dialog";
 
 export default class Write extends Component {
@@ -27,7 +27,7 @@ export default class Write extends Component {
       if (value.includes("/")) {
         insertTodo.state.title = inputEl.value;
         inputEl.value = "";
-        WriteTodo();
+        writeTodo();
       } else {
         this.el.append(dialog);
       }
