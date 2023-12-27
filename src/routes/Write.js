@@ -20,7 +20,11 @@ export default class Write extends Component {
       `;
     const inputEl = this.el.querySelector("input");
     const btnEl = this.el.querySelector(".btn-submit");
-    const dialog = new Dialog("test", "sdfsdf654").el;
+    const dialog = new Dialog({
+      container: this.el,
+      title: "Error",
+      content: "Todo 내용이 잘못되었습니다. 다시 입력해 주세요.",
+    });
 
     const sendData = () => {
       const value = inputEl.value;
@@ -29,13 +33,11 @@ export default class Write extends Component {
         inputEl.value = "";
         writeTodo();
       } else {
-        this.el.append(dialog);
+        dialog.open();
       }
     };
 
-    btnEl.addEventListener("click", () => {
-      sendData();
-    });
+    btnEl.addEventListener("click", sendData);
     inputEl.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         sendData();

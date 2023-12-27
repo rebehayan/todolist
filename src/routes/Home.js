@@ -10,6 +10,9 @@ export default class Home extends Component {
     todoStore.subscribe("todoItems", () => {
       this.render();
     });
+    todoStore.subscribe("filteredItems", () => {
+      this.render();
+    });
     todoStore.subscribe("activeTab", () => {
       this.render();
     });
@@ -19,7 +22,6 @@ export default class Home extends Component {
 
   connectedCallback() {
     loadTodo();
-    console.log(todoStore);
   }
 
   render() {
@@ -39,7 +41,7 @@ export default class Home extends Component {
     noteListEl.before(tab);
 
     noteListEl.append(
-      ...todoStore.state.todoItems.map((todo) => {
+      ...todoStore.state.filteredItems.map((todo) => {
         return new Todolist({ todo }).el;
       })
     );

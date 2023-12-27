@@ -54,7 +54,7 @@ export class Store {
           state[key] = val;
           const value = this.observers[key];
           if (value) {
-            console.log(key);
+            // console.log(val);
             value.forEach((observer) => observer(val));
           }
         },

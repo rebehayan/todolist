@@ -1,5 +1,5 @@
 import { Component } from "../core/core";
-import { changeActiveTab } from "../store/todo";
+import todoStore, { filteredTodoList, changeActiveTab } from "../store/todo";
 
 export default class Tab extends Component {
   constructor() {
@@ -10,30 +10,29 @@ export default class Tab extends Component {
   render() {
     this.el.innerHTML = /* html */ `
       <ul class="tab-type1">
-        <li><button class="--active"><span>All</span></button></li>
-        <li><button><span>Doing</span></button></li>
-        <li><button><span>Done</span></button></li>
+        <li><button data-status="all"><span>All</span></button></li>
+        <li><button data-status="doing"><span>Doing</span></button></li>
+        <li><button data-status="done"><span>Done</span></button></li>
       </ul>
     `;
 
-    this.tabBtnEl = this.el.querySelectorAll("button");
+    this.tabBtnEl = Array.from(this.el.querySelectorAll("button"));
     this.tabControl();
   }
 
   tabControl() {
+    const willActiveTabButton = this.tabBtnEl.find((button) => {
+      return todoStore.state.activeTab === button.dataset.status;
+    });
+
+    willActiveTabButton.classList.add("--active");
+
     this.tabBtnEl.forEach((el) => {
       el.addEventListener("click", () => {
-        this.removeClass();
         const txt = el.textContent.toLowerCase();
         changeActiveTab(txt);
-        el.classList.add("--active");
+        filteredTodoList(txt);
       });
-    });
-  }
-
-  removeClass() {
-    this.tabBtnEl.forEach((el) => {
-      el.classList.remove("--active");
     });
   }
 }
