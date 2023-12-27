@@ -27,8 +27,7 @@ export default class Todolist extends Component {
     this.el.innerHTML = /* html */ `
       <div class="align both vm ico">
         <div>
-          <!-- <input type="checkbox" id="chk1_${todo.order}" /><label for="chk1_${todo.order}" aria-label="완료"></label> -->
-          <input type="checkbox" ${checkedTodo} /><label aria-label="완료"></label>
+          <input type="checkbox" id="${todo.id}" ${checkedTodo} /><label for="${todo.id}" aria-label="완료">체크해</label>
           <button class="btn-more" aria-label="옵션"></button>
           <dialog class="notes-list__option">
             <div>
