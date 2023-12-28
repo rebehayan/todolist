@@ -14,11 +14,20 @@ $icons: (
 $iconCount: list.length($icons);
 
 .header {
+  @extend %shadow;
   @include position(f, left, 0, top, 0);
   height: calc(100vh - 6rem);
   margin: 3rem;
   width: 22rem;
-  @extend %shadow;
+
+  @include mobile {
+    transform: translateX(-100%);
+    margin: 0;
+    transition: transform 0.5s;
+    &.active {
+      transform: translateX(0);
+    }
+  }
 }
 .logo {
   display: flex;
@@ -34,6 +43,10 @@ $iconCount: list.length($icons);
     width: 3rem;
     height: 3rem;
     background: url("/favicon.png") no-repeat 0 0 / cover;
+  }
+  .mobile-header & {
+    border: none;
+    padding: 0;
   }
 }
 .gnb {
@@ -62,5 +75,15 @@ $iconCount: list.length($icons);
         content: map-get($icons, $i);
       }
     }
+  }
+}
+
+.mobile-header {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 3rem;
+  @include mobile {
+    display: flex;
   }
 }

@@ -26,11 +26,11 @@ export default class Write extends Component {
       content: "Todo 내용이 잘못되었습니다. 다시 입력해 주세요.",
     });
 
+    inputEl.value = "";
     const sendData = () => {
       const value = inputEl.value;
       if (value.includes("/")) {
         insertTodo.state.title = inputEl.value;
-        inputEl.value = "";
         writeTodo();
       } else {
         dialog.open();

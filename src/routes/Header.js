@@ -10,39 +10,12 @@ export default class Header extends Component {
             name: "Home",
             href: "#/",
           },
-          // {
-          //   name: "Notes",
-          //   href: "#/notes",
-          // },
-          // {
-          //   name: "Project Plans",
-          //   href: "#/projectplans",
-          // },
-          // {
-          //   name: "Day Plans",
-          //   href: "#/dayplans",
-          // },
-          // {
-          //   name: "Side Project Plans",
-          //   href: "#/sideprojectplans",
-          // },
-          // {
-          //   name: "Reminder",
-          //   href: "#/reminder",
-          // },
-          // {
-          //   name: "Bin",
-          //   href: "#/bin",
-          // },
-          // {
-          //   name: "Notes",
-          //   href: "#/notes",
-          // },
           {
             name: "About Todo",
             href: "#/abouttodo",
           },
         ],
+        // navActive,
       },
     });
     window.addEventListener("popstate", () => {
@@ -79,5 +52,15 @@ export default class Header extends Component {
     gnbItems.forEach((el, index) => {
       el.setAttribute("data-icon", `ico${index}`);
     });
+  }
+
+  mobile(navActive) {
+    if (navActive) {
+      console.log(this.el);
+      this.el.classList.add("active");
+    } else {
+      console.log(this.el);
+      this.el.classList.remove("active");
+    }
   }
 }

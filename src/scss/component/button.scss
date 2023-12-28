@@ -1,3 +1,5 @@
+@use "sass:list";
+
 .btn-more {
   &::before {
     content: "\F5D4";
@@ -17,5 +19,76 @@
     content: "\F78B";
     font-family: $icon;
     font-size: 1.8rem;
+  }
+}
+.btn-menu {
+  &::before {
+    content: "\F479";
+    font-family: $icon;
+    font-size: 3rem;
+  }
+}
+
+$buttonSize: (
+  1: (
+    "class": "large",
+    "fontSize": 1.6rem,
+    "height": 3.8rem,
+    "border": 0.1rem,
+    "padding": 1.2rem,
+    "radius": 1rem,
+  ),
+  2: (
+    "class": "small",
+    "fontSize": 1.4rem,
+    "height": 4rem,
+    "border": 0.1rem,
+    "padding": 3rem,
+  ),
+);
+$buttonColor: (
+  1: (
+    "class": "black",
+    "borderColor": $dark,
+    "bgColor": $dark,
+    "color": $white,
+  ),
+  2: (
+    "class": "white",
+    "borderColor": $dark,
+    "bgColor": $white,
+    "color": $dark,
+  ),
+);
+
+$buttonIcon: (
+  1: (
+    "direction": a,
+    "width": 1rem,
+    "height": 2rem,
+    "bgImg": "ico.svg",
+  ),
+  2: (
+    "direction": b,
+    "width": 1rem,
+    "height": 2rem,
+    "bgImg": "ico.svg",
+  ),
+);
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  gap: 1rem;
+  @for $i from 1 through list.length($buttonSize) {
+    @include buttonSize(map-get($buttonSize, $i, class), $i);
+  }
+  @for $i from 1 through list.length($buttonColor) {
+    @include buttonColor(map-get($buttonColor, $i, class), $i);
+  }
+  @for $i from 1 through list.length($buttonIcon) {
+    @include buttonIcon($i);
   }
 }

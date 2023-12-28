@@ -83,7 +83,7 @@ export async function delTodo(todoId) {
   }
 }
 
-export async function editTodo(todoId) {
+export async function editTodo(title, status, todoId) {
   try {
     const res = await fetch(`https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos/${todoId}`, {
       method: "PUT",
@@ -92,7 +92,21 @@ export async function editTodo(todoId) {
         apikey: "KDT7_GrZ1eYBo", // KDT 7기 APIKEY 입니다!
         username: "KDT7_HaSungPil",
       },
+      body: JSON.stringify({
+        title: title,
+        id: todoId,
+        done: status,
+      }),
     });
+
+    const data = await res.json();
+    store.state.todoItems = store.state.todoItems.map((item) => {
+      if (item.id === data.id) {
+        return data;
+      }
+      return item;
+    });
+    store.state.filteredItems = store.state.todoItems;
 
     console.log(res);
   } catch (error) {

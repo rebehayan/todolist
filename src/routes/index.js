@@ -11,32 +11,4 @@ export default createRouter([
     path: "#/abouttodo",
     component: About,
   },
-  // {
-  //   path: "#/notes",
-  //   component: Notes,
-  // },
-  // {
-  //   path: "#/projectplans",
-  //   component: ProjectPlans,
-  // },
-  // {
-  //   path: "#/dayplans",
-  //   component: DayPlans,
-  // },
-  // {
-  //   path: "#/sideprojecpPlans",
-  //   component: SideProjectPlans,
-  // },
-  // {
-  //   path: "#/reminder",
-  //   component: Reminder,
-  // },
-  // {
-  //   path: "#/bin",
-  //   component: Bin,
-  // },
-  // {
-  //   path: "#/notes",
-  //   component: Notes,
-  // },
 ]);

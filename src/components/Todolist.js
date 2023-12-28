@@ -1,5 +1,6 @@
 import { Component } from "../core/core";
-import { filteredTodoList, delTodo, editTodo, todoDoneState } from "../store/todo";
+import { delTodo, editTodo, todoDoneState } from "../store/todo";
+import DialogEdit from "../routes/DialogEdit";
 
 export default class Todolist extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ export default class Todolist extends Component {
     this.el.innerHTML = /* html */ `
       <div class="align both vm ico">
         <div>
-          <input type="checkbox" id="${todo.id}" ${checkedTodo} /><label for="${todo.id}" aria-label="완료">체크해</label>
+          <input type="checkbox" id="${todo.id}" ${checkedTodo} class="checkbox" /><label for="${todo.id}" aria-label="완료"></label>
           <button class="btn-more" aria-label="옵션"></button>
           <dialog class="notes-list__option">
             <div>
@@ -51,6 +52,13 @@ export default class Todolist extends Component {
     const checkEl = this.el.querySelector("input[type='checkbox']");
     const editEl = this.el.querySelectorAll(".btn-edit");
     const deleteEl = this.el.querySelectorAll(".btn-delete");
+    const editDialogEl = new DialogEdit({
+      container: this.el,
+      title: title,
+      content: content,
+      id: todo.id,
+      done: todo.done,
+    });
 
     moreEl.forEach((el) => {
       el.addEventListener("click", (e) => {
@@ -71,8 +79,7 @@ export default class Todolist extends Component {
       el.addEventListener("click", () => {
         const parentEl = el.parentElement.parentElement;
         parentEl.classList.remove("toggle");
-        console.log(todo.id);
-        editTodo(todo.id);
+        editDialogEl.open();
       });
     });
 

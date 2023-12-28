@@ -60,6 +60,11 @@ $colorSet: (
         }
       }
     }
+    .#{$class} {
+      label {
+        color: $color;
+      }
+    }
   }
 }
 
@@ -73,6 +78,12 @@ $colorSet: (
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 3rem;
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include mobile {
+      grid-template-columns: 1fr;
+    }
     > li {
       @extend %shadow;
       position: relative;
@@ -95,12 +106,23 @@ $colorSet: (
           color: $white;
         }
       }
+      &:has(.done) {
+        .ico {
+          &::before {
+            content: "\F1E2";
+          }
+        }
+      }
     }
     .ico {
       &::before {
         content: "\F1E8";
         font-family: $icon;
         font-size: 3rem;
+      }
+      > div {
+        display: flex;
+        gap: 1rem;
       }
     }
     &__option {
@@ -130,6 +152,9 @@ $colorSet: (
       font-size: 2.5rem;
       padding: 1rem 0 0;
       font-weight: 800;
+      @include mobile {
+        font-size: 2rem;
+      }
       li:hover & {
         color: $white;
       }
@@ -146,13 +171,19 @@ $colorSet: (
     &__state {
       display: flex;
       &::before {
-        content: "\F846";
         font-family: $icon;
         font-size: 2rem;
-        transform: rotate(90deg);
+        content: "\F846";
         li:hover & {
           color: $white;
-          animation: roket infinite 1.2s;
+        }
+      }
+      &.doing {
+        &::before {
+          transform: rotate(90deg);
+          li:hover & {
+            animation: roket infinite 1.2s;
+          }
         }
       }
     }
@@ -171,6 +202,27 @@ $colorSet: (
         li:hover & {
           color: $white;
         }
+      }
+    }
+  }
+}
+.checkbox {
+  @include a11y-hidden;
+  + label {
+    cursor: pointer;
+    &::before {
+      content: "\F584";
+      font-family: $icon;
+      font-size: 1.8rem;
+      li:hover & {
+        color: $white;
+      }
+    }
+  }
+  &:checked {
+    + label {
+      &::before {
+        content: "\F26D";
       }
     }
   }

@@ -8,20 +8,11 @@
 
 @mixin buttonIcon($class) {
   &.ico#{$class} {
-    @if map-get($buttonIcon, $class, direction) ==
-      "b" or
-      map-get($buttonIcon, $class, direction) ==
-      "before"
-    {
+    @if map-get($buttonIcon, $class, direction) == "b" or map-get($buttonIcon, $class, direction) == "before" {
       &::before {
         @include btnIcon($class);
       }
-    } @else if
-      map-get($buttonIcon, $class, direction) ==
-      "a" or
-      map-get($buttonIcon, $class, direction) ==
-      "after"
-    {
+    } @else if map-get($buttonIcon, $class, direction) == "a" or map-get($buttonIcon, $class, direction) == "after" {
       &::after {
         @include btnIcon($class);
       }
@@ -42,9 +33,10 @@
 @mixin buttonSize($size, $i) {
   &.#{$size} {
     font-size: map-get($buttonSize, $i, fontSize);
-    height: map-get($buttonSize, $i, height, web);
+    height: map-get($buttonSize, $i, height);
     border: map-get($buttonSize, $i, border) solid;
     padding: 0 map-get($buttonSize, $i, padding);
+    border-radius: map-get($buttonSize, $i, radius);
     @include mobile {
       font-size: map-get($buttonSize, $i, fontSize, mobile);
       height: map-get($buttonSize, $i, height, mobile);
