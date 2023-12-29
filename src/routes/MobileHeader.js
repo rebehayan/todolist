@@ -1,5 +1,6 @@
 import { Component } from "../core/core";
-import Header from "./Header";
+// import Header from "./Header";
+import navigationStore, { openNavigation } from "../store/navigation";
 
 export default class MobileHeader extends Component {
   constructor() {
@@ -23,8 +24,7 @@ export default class MobileHeader extends Component {
     let navActive = false;
     btnMenuEl.addEventListener("click", () => {
       navActive = !navActive;
-      const menu = new Header();
-      menu.mobile(navActive);
+      openNavigation(navActive);
     });
   }
 }

@@ -1,4 +1,5 @@
 import { Component } from "../core/core";
+import navigationStore, { closeNavigation } from "../store/navigation";
 
 export default class Header extends Component {
   constructor() {
@@ -15,15 +16,18 @@ export default class Header extends Component {
             href: "#/abouttodo",
           },
         ],
-        // navActive,
       },
     });
     window.addEventListener("popstate", () => {
       this.render();
     });
+    navigationStore.subscribe("open", () => {
+      this.render();
+    });
   }
   render() {
     this.el.classList.add("header");
+
     this.el.innerHTML = /* html */ `
       <h1 class="logo"><a href="#/">JUSTTODO</a></h1>
       <nav>
@@ -49,19 +53,30 @@ export default class Header extends Component {
 
     // 링크 및 아이콘 생성
     const gnbItems = gnbEl.querySelectorAll("a");
+    const width = window.innerWidth;
+
     gnbItems.forEach((el, index) => {
       el.setAttribute("data-icon", `ico${index}`);
+      el.addEventListener("click", () => {
+        if (width < 800) {
+          closeNavigation();
+        }
+      });
     });
+
+    this.mobile();
   }
 
-  mobile(navActive) {
-    const headerEl = this.el;
+  mobile() {
+    const navActive = navigationStore.state.open;
+    const body = document.body;
+
     if (navActive) {
-      console.log(this.el);
-      headerEl.classList.add("active");
+      this.el.classList.add("active");
+      body.classList.add("hidden");
     } else {
-      console.log(this.el);
-      headerEl.classList.remove("active");
+      this.el.classList.remove("active");
+      body.classList.remove("hidden");
     }
   }
 }

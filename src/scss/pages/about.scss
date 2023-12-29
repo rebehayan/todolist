@@ -1,6 +1,11 @@
 .profile {
   display: flex;
   gap: 3rem;
+  @include mobile {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
   li {
     @extend %shadow;
     display: grid;
@@ -11,11 +16,17 @@
     &::before {
       font-family: $icon;
       font-size: 6rem;
+      @include mobile {
+        font-size: 10vw;
+      }
     }
     &:nth-child(1) {
       font-size: 1.5rem;
       line-height: 1.6;
       text-align: left;
+      @include mobile {
+        grid-column: 1 / -1;
+      }
     }
     &:nth-child(2) {
       &::before {
@@ -34,15 +45,24 @@
         content: "\F407";
         color: $danger;
       }
+      @include mobile {
+        grid-column: 1 / -1;
+      }
     }
     strong {
       font-family: $jost;
       font-size: 4rem;
+      @include mobile {
+        font-size: 6vw;
+      }
     }
     span {
       font-size: 2rem;
       font-weight: 300;
       opacity: 0.8;
+      @include mobile {
+        font-size: 4vw;
+      }
     }
   }
   margin: 3rem 0;
