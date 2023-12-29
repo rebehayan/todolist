@@ -2,12 +2,21 @@
   display: flex;
   gap: 1rem;
   padding: 0 0 4rem;
+  @include mobile {
+    li {
+      flex: 1;
+    }
+  }
   button {
     padding: 1rem 1.5rem;
     font-weight: 400;
     font-family: $roboto;
     font-size: 1.8rem;
     color: $gray;
+    @include mobile {
+      width: 100%;
+      padding: 1rem 0;
+    }
     &.--active {
       color: $dark;
       span {

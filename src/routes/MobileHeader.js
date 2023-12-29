@@ -23,9 +23,7 @@ export default class MobileHeader extends Component {
     let navActive = false;
     btnMenuEl.addEventListener("click", () => {
       navActive = !navActive;
-      const menu = new Header({
-        navActive,
-      });
+      const menu = new Header();
       menu.mobile(navActive);
     });
   }

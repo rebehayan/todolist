@@ -86,9 +86,10 @@ $colorSet: (
     }
     > li {
       @extend %shadow;
+      display: grid;
+      grid-template-rows: min-content min-content 1fr min-content;
       position: relative;
       transition: 0.4s;
-
       &::after {
         content: "";
         @include position(a, left, 0, bottom, 0);

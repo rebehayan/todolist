@@ -2,7 +2,7 @@ import { Component } from "../core/core";
 import { editTodo } from "../store/todo";
 
 export default class DialogEdit extends Component {
-  constructor({ container, title, content, id, done }) {
+  constructor({ container, title, content, id, done, date }) {
     super({
       tagName: "dialog",
       state: {
@@ -11,6 +11,7 @@ export default class DialogEdit extends Component {
         content,
         id,
         done,
+        date,
       },
     });
   }
@@ -19,7 +20,10 @@ export default class DialogEdit extends Component {
     this.state.container.append(this.el);
     this.el.classList.add("edit");
     this.el.innerHTML = /* html */ `
-        <h2 class="edit__title">Todo Palnner Edit</h2>
+        <div class="align both vm">
+          <h2 class="edit__title">Todo Palnner Edit</h2>
+        <div class="edit__date">${this.state.date}</div>
+        </div>
         <div class="edit__content">
           <label for="txt1_${this.state.id}">Title</label>
           <input type="text" id="txt1_${this.state.id}" class="todo-title" placeholder="제목을 입력하세요." value="${this.state.title}" />

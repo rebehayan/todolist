@@ -55,12 +55,13 @@ export default class Header extends Component {
   }
 
   mobile(navActive) {
+    const headerEl = this.el;
     if (navActive) {
       console.log(this.el);
-      this.el.classList.add("active");
+      headerEl.classList.add("active");
     } else {
       console.log(this.el);
-      this.el.classList.remove("active");
+      headerEl.classList.remove("active");
     }
   }
 }

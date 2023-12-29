@@ -4,6 +4,9 @@
   grid-template-columns: 1fr min-content;
   gap: 1rem;
   margin: 0 0 3rem;
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
   input {
     width: 100%;
     border: none;
@@ -27,11 +30,18 @@
     width: 5rem;
     border: 1px solid $border;
     border-radius: 0.5rem;
+    @include mobile {
+      width: 100%;
+      padding: 0.8rem 0;
+    }
     &::before {
       content: "\F4CB";
       font-family: $icon;
       font-size: 2rem;
       color: $light;
+      @include mobile {
+        font-size: 1.6rem;
+      }
     }
   }
 }

@@ -5,6 +5,14 @@ dialog {
     min-width: 30rem;
     padding: 1rem;
     border: 1px solid $primary;
+    @include mobile {
+      width: 100%;
+    }
+  }
+  &.edit {
+    @include mobile {
+      width: 100%;
+    }
   }
 }
 .alert {
@@ -30,6 +38,10 @@ dialog {
     font-family: $jost;
     font-weight: 400;
   }
+  &__date {
+    font-size: 1.3rem;
+    color: $light;
+  }
   &__content {
     display: grid;
     grid-template-columns: 1fr;
@@ -42,12 +54,15 @@ dialog {
       font-weight: 300;
     }
     input {
-      min-width: 45rem;
-      width: 100%;
+      width: 35rem;
       border: 0.1rem solid $border;
-      height: 3rem;
+      height: 4rem;
       padding: 0.5rem;
       font-size: 1.6rem;
+      box-sizing: border-box;
+      @include mobile {
+        width: 100%;
+      }
     }
   }
 }

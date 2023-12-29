@@ -58,6 +58,7 @@ export default class Todolist extends Component {
       content: content,
       id: todo.id,
       done: todo.done,
+      date: updateSplit,
     });
 
     moreEl.forEach((el) => {
